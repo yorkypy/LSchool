@@ -44,7 +44,7 @@ ROOT_URLCONF = 'SMS.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+        'DIRS': [],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -119,7 +119,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
 #For Custom USER
-#AUTH_USER_MODEL = "core_app.CustomUser"
+AUTH_USER_MODEL = "core_app.CustomUser"
 
 # Registering Custom Backend "EmailBackEnd"
-#AUTHENTICATION_BACKENDS = ['student_management_app.EmailBackEnd.EmailBackEnd']
+AUTHENTICATION_BACKENDS = ['core_app.email_backend.EmailBackEnd']
