@@ -233,13 +233,11 @@
         ],
         datasets: [
           {
-            data: [
-              {{ all_student_count }}, {{ staff_count }}
-            ],
+            data: [{{ all_student_count }}, {{ staff_count }}],
             backgroundColor : ['#f56954', '#00a65a'],
           }
         ]
-      },
+      }
 
       //-------------
       //- PIE CHART -
@@ -261,7 +259,7 @@
 
 
       // Get context with jQuery - using jQuery's .get() method.
-      var course_name_list = {{ course_name_list|safe }}'
+      var course_name_list = {{ course_name_list|safe }}
       var subject_count_list = {{ subject_count_list }}
       var donutChartCanvas = $('#donutChart').get(0).getContext('2d')
       var donutData        = {
@@ -403,9 +401,7 @@
       })
 
 
-        //- BAR CHART - Student Attendance vs Leave
-      //-------------
-
+      //- BAR CHART - Student Attendance vs Leave
       var student_attendance_present_list = {{ student_attendance_present_list }};
       var student_attendance_leave_list = {{ student_attendance_leave_list }};
       var student_name_list = {{ student_name_list|safe }};

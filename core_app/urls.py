@@ -1,5 +1,7 @@
 
-from django.urls import path
+from os import name
+from core_app.views.principal import downloadcsv, StaffBulkUploadView
+from django.urls import include, path
 from core_app.views import views, principal, student, staff 
 
 
@@ -7,7 +9,7 @@ urlpatterns = [
     #Authentication
     path('', views.home, name='home'),
     path('login/', views.loginPage, name="login"),
-    # path('accounts/', include('django.contrib.auth.urls')),
+    #path('accounts/', include('django.contrib.auth.urls')),
     path('doLogin/', views.doLogin, name="doLogin"),
     path('logout_user/', views.logout_user, name="logout_user"),
     path('admin_home/', principal.admin_home, name="admin_home"),
@@ -19,6 +21,10 @@ urlpatterns = [
     path('edit_staff/<staff_id>/', principal.edit_staff, name="edit_staff"),
     path('edit_staff_save/', principal.edit_staff_save, name="edit_staff_save"),
     path('delete_staff/<staff_id>/', principal.delete_staff, name="delete_staff"),
+    path('upload/', StaffBulkUploadView.as_view(), name='staff-upload'),
+    #path('upload_staff/', principal.upload_staff, name='staff-upload'),
+    #path('upload_staff_save/', principal.upload_staff, name='staff-upload-save'),
+    path('downloadcsv/', downloadcsv, name='staff-download-csv'),
 
     path('add_course/', principal.add_course, name="add_course"),
     path('add_course_save/', principal.add_course_save, name="add_course_save"),
@@ -85,6 +91,13 @@ urlpatterns = [
     path('staff_profile_update/', staff.staff_profile_update, name="staff_profile_update"),
     path('staff_add_result/', staff.staff_add_result, name="staff_add_result"),
     path('staff_add_result_save/', staff.staff_add_result_save, name="staff_add_result_save"),
+
+    path('staff_add_student/', staff.staff_add_student, name="staff_add_student"),
+    path('staff_add_student_save/', staff.staff_add_student_save, name="staff_add_student_save"),
+    path('staff_edit_student/<student_id>', staff.staff_edit_student, name="staff_edit_student"),
+    path('staff_edit_student_save/', staff.staff_edit_student_save, name="staff_edit_student_save"),
+    path('staff_manage_student/', staff.staff_manage_student, name="staff_manage_student"),
+    path('staff_delete_student/<student_id>/', staff.staff_delete_student, name="staff_delete_student"),
 
     # URSL for Student
     path('student_home/', student.student_home, name="student_home"),

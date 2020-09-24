@@ -36,6 +36,16 @@
                 </p>
               </a>
             </li>
+            <li class="nav-item">
+              {% url 'staff_manage_student' as staff_manage_student %}
+              {% url 'staff_edit_student' student_id=id as staff_edit_student %}
+              <a href="{{ staff_manage_student }}" class="nav-link {% if request.path == staff_manage_student %} active {% endif %} {% if request.path == staff_edit_student %} active {% endif %}">
+                <i class="nav-icon fas fa-user-graduate"></i>
+                <p>
+                  Students
+                </p>
+              </a>
+            </li>
 
             <li class="nav-item">
               {% url 'staff_take_attendance' as staff_take_attendance %}

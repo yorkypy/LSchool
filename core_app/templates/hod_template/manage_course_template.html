@@ -56,7 +56,7 @@
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body table-responsive p-0">
-                            <table class="table table-hover text-nowrap">
+                            <table class="table table-bordered table-hover">
                             <thead>
                                 <tr>
                                 <th>ID</th>
@@ -69,13 +69,13 @@
                             <tbody>
                                 {% for course in courses %}
                                 <tr>
-                                <td>{{ course.id }}</td>
+                                <td>{{ forloop.counter }}</td>
                                 <td>{{ course.course_name }}</td>
                                 <td>{{ course.created_at }}</td>
                                 <td>{{ course.updated_at }}</td>
                                 <td>
-                                    <a href="{% url 'edit_course' course.id %}" class="btn btn-success">Edit</a> 
-                                    <a href="{% url 'delete_course' course.id %}" class="btn btn-danger">Delete</a>
+                                    <a href="{% url 'edit_course' course.id %}"><i class="fas fa-edit"></i></a> 
+                                    <a href="{% url 'delete_course' course.id %}"><i class="fas fa-trash-alt" style="color: red;"></i></a>
                                 </td>
                                 </tr>
                                 {% endfor %}

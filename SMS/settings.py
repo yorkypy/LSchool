@@ -37,6 +37,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    'core_app.login_middleware.LoginCheckMiddleWare',
+
 ]
 
 ROOT_URLCONF = 'SMS.urls'
