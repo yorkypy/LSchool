@@ -1,7 +1,7 @@
 {% extends 'hod_template/base_template.html' %}
 
 {% block page_title %}
-    Edit Course | #ID : {{ course.id }}
+    Edit Class | #ID : {{ course.id }}
 {% endblock page_title %}
 
 {% block main_content %}
@@ -16,11 +16,11 @@
                     <!-- general form elements -->
                     <div class="card card-primary">
                     <div class="card-header">
-                        <h3 class="card-title">Edit Course</h3>
+                        <h3 class="card-title">Edit Class</h3>
                     </div>
                     <!-- /.card-header -->
                     <!-- form start -->
-                    <form role="form" method="POST" action="{% url 'edit_course_save' %}">
+                    <form role="form" method="POST" action="{% url 'manage_course' %}">
                         {% csrf_token %}
 
                         
@@ -52,7 +52,7 @@
 
                         <div class="card-body">
                             <div class="form-group">
-                                <label>Course Name </label>
+                                <label>Class Name </label>
                                 <input type="text" class="form-control" name="course" value="{{ course.course_name }}">
                                 <input type="hidden" name="course_id" value="{{ course.id }}" />
                             </div>
@@ -61,7 +61,7 @@
                         <!-- /.card-body -->
 
                         <div class="card-footer">
-                        <button type="submit" class="btn btn-primary">Update Course</button>
+                        <button type="submit" class="btn btn-primary">Update Class</button>
                         </div>
                     </form>
                     </div>

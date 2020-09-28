@@ -1,3 +1,4 @@
+from django.http import request
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.contrib import messages
@@ -268,7 +269,7 @@ def edit_staff_save(request):
         first_name = request.POST.get('first_name')
         last_name  = request.POST.get('last_name')
         address    = request.POST.get('address')
-        dob        = request.POS.get('dob')
+        dob        = request.POST.get('dob')
         staff_number = request.POST.get('staff_number')
 
         try:
@@ -544,6 +545,12 @@ def edit_student(request, student_id):
     return render(request, "hod_template/edit_student_template.html", context)
 
 
+
+def student_detail(request, student_id):
+    student = Students.objects.get(admin=student_id)
+    return render(request, 'hod_template/student_detail.html', {'student': student})
+
+
 def edit_student_save(request):
     if request.method != "POST":
         return HttpResponse("Invalid Method!")
@@ -618,6 +625,8 @@ def delete_student(request, student_id):
     except:
         messages.error(request, "Failed to Delete Student.")
         return redirect('manage_student')
+
+
 
 
 def add_subject(request):

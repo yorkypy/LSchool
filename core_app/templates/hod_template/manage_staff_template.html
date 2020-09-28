@@ -65,7 +65,7 @@ Manage Staff
                                 <tr>
                                     <th>ID</th>
                                     <th>Teacher</th>
-                                    <th>Email Address</th>
+                                    <th>Email</th>
                                     <th>Phone Number</th>
                                     <th>Gender</th>
                                     <th>DOB</th>
@@ -77,7 +77,7 @@ Manage Staff
                             </thead>
                             <tbody>
                                 {% for staff in staffs %}
-                                <tr>
+                                <tr class="clickable-tr" href="{% url 'edit_staff' staff.admin.id %}">
                                     <td>{{ forloop.counter }}</td>
                                     <td>{{ staff.admin.first_name }} {{ staff.admin.last_name }}</td>
                                     <td>{{ staff.admin.email }}</td>
@@ -92,6 +92,7 @@ Manage Staff
                                         <a href="{% url 'edit_staff' staff.admin.id %}"><i class="fas fa-edit"></i></a>
                                         <a href="{% url 'delete_staff' staff.admin.id %}"><i class="fas fa-trash-alt"
                                                 style="color: red"></i></a>
+                                        
                                         <!-- <a href="#"><i class="far fa-eye"></i></a> -->
 
                                     </td>
@@ -110,6 +111,18 @@ Manage Staff
 
     </div><!-- /.container-fluid -->
 </section>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js">
+    $('.clickable-tr').on('click', function(){
+        var myLink = $(this).attr('href');
+        window.location.href = myLink;
+    });
+</script>
+<style>
+    .clickable-tr {
+        cursor: pointer;
+        
+    }
+</style>
 
 {% endblock main_content %}
 

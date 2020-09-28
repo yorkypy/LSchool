@@ -45,6 +45,7 @@ urlpatterns = [
     path('edit_student/<student_id>', principal.edit_student, name="edit_student"),
     path('edit_student_save/', principal.edit_student_save, name="edit_student_save"),
     path('manage_student/', principal.manage_student, name="manage_student"),
+    path('student_detail/<student_id>', principal.student_detail, name='student_detail'),
     path('delete_student/<student_id>/', principal.delete_student, name="delete_student"),
 
     path('add_subject/', principal.add_subject, name="add_subject"),

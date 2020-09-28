@@ -57,8 +57,8 @@
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body table-responsive p-0">
-                            <table class="table table-bordered table-hover">
-                            <thead>
+                            <table class="table table-bordered table-hover" id="studenttable">
+                            <thead class="thead-light">
                                 <tr>
                                 <th>#</th>
                                 <th>Student</th>
@@ -66,7 +66,7 @@
                                 <th>Address</th>
                                 <th>Gender</th>
                                 <th>Session</th>
-                                <th>Course</th>
+                                <th>Section</th>
                                 <th>Last Login</th>
                                 <th>Date Joined</th>
                                 <th>Action</th>
@@ -74,7 +74,7 @@
                             </thead>
                             <tbody>
                                 {% for student in students %}
-                                <tr>
+                                <tr class="clickable-row" data-href="{% url 'student_detail' student.admin.id  %}">
                                 <td>{{ forloop.counter }}</td>
                                 <td>{{ student.admin.first_name }} {{ student.admin.last_name }}</td>
                                 <td>{{ student.admin.email }}</td>
@@ -106,3 +106,11 @@
       </section>
 
   {% endblock main_content %}
+
+{% block custom_js %}
+    <script>
+        $('#studenttable').DataTable({
+        });
+    </script>
+
+{% endblock custom_js %}
