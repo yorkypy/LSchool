@@ -42,24 +42,11 @@ Manage Staff
 
             <div class="col-md-12">
                 <!-- general form elements -->
-                <div class="card">
-                    <div class="card-header">
-                        <h3 class="card-title">Staff Details</h3>
-
-                        <div class="card-tools">
-                            <div class="input-group input-group-sm" style="width: 150px;">
-                                <input type="text" name="table_search" class="form-control float-right"
-                                    placeholder="Search">
-
-                                <div class="input-group-append">
-                                    <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <div class="card"></div>
+               
                     <!-- /.card-header -->
-                    <div class='card-body table-responsive p-0'>
-                        <table class="table table-bordered table-hover">
+                    <div class='card-body table-responsive p-0' style="padding-top: 5px;">
+                        <table class="table table-bordered table-hover" id="myTable">
 
                             <thead class="thead-light">
                                 <tr>
@@ -72,12 +59,11 @@ Manage Staff
                                     <th>Address</th>
                                     <th>Last Login</th>
                                     <th>Date Joined</th>
-                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {% for staff in staffs %}
-                                <tr class="clickable-tr" href="{% url 'edit_staff' staff.admin.id %}">
+                                <tr class="clickable-row" data-href="{% url 'staff_detail' staff.admin.id  %}">
                                     <td>{{ forloop.counter }}</td>
                                     <td>{{ staff.admin.first_name }} {{ staff.admin.last_name }}</td>
                                     <td>{{ staff.admin.email }}</td>
@@ -88,14 +74,7 @@ Manage Staff
                                     <td>{{ staff.address }}</td>
                                     <td>{{ staff.admin.last_login }}</td>
                                     <td>{{ staff.admin.date_joined }}</td>
-                                    <td>
-                                        <a href="{% url 'edit_staff' staff.admin.id %}"><i class="fas fa-edit"></i></a>
-                                        <a href="{% url 'delete_staff' staff.admin.id %}"><i class="fas fa-trash-alt"
-                                                style="color: red"></i></a>
-                                        
-                                        <!-- <a href="#"><i class="far fa-eye"></i></a> -->
-
-                                    </td>
+                                    
                                 </tr>
                                 {% endfor %}
 
@@ -111,18 +90,17 @@ Manage Staff
 
     </div><!-- /.container-fluid -->
 </section>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js">
-    $('.clickable-tr').on('click', function(){
-        var myLink = $(this).attr('href');
-        window.location.href = myLink;
-    });
-</script>
-<style>
-    .clickable-tr {
-        cursor: pointer;
-        
-    }
-</style>
 
 {% endblock main_content %}
 
+{% block custom_js %}
+    <script>
+        $('#studenttable').DataTable({
+        });
+
+       
+    </script>
+
+
+
+{% endblock custom_js %}

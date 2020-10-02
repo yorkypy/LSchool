@@ -21,6 +21,7 @@ urlpatterns = [
     path('edit_staff/<staff_id>/', principal.edit_staff, name="edit_staff"),
     path('edit_staff_save/', principal.edit_staff_save, name="edit_staff_save"),
     path('delete_staff/<staff_id>/', principal.delete_staff, name="delete_staff"),
+    path('staff_detail/<staff_id>', principal.staff_detail, name='staff_detail'),
     path('upload/', StaffBulkUploadView.as_view(), name='staff-upload'),
     #path('upload_staff/', principal.upload_staff, name='staff-upload'),
     #path('upload_staff_save/', principal.upload_staff, name='staff-upload-save'),

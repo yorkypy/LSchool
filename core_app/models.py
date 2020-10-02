@@ -79,15 +79,15 @@ class SessionYearModel(models.Model):
 
 
 class Courses(models.Model):
-    id          = models.AutoField(primary_key=True)
-    course_name = models.CharField(max_length=255)
-    created_at  = models.DateTimeField(auto_now_add=True)
-    updated_at  = models.DateTimeField(auto_now=True)
-    objects     = models.Manager()
+    id            = models.AutoField(primary_key=True)
+    course_name   = models.CharField(max_length=255)
+    #class_teacher = models.ForeignKey(Staffs, on_delete=models.CASCADE)
+    updated_at    = models.DateTimeField(auto_now=True)
+    created_at    = models.DateTimeField(auto_now_add=True)
+    objects       = models.Manager()
 
     def __str__(self):
 	    return self.course_name
-
 
 
 class Subjects(models.Model):

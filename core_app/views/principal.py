@@ -142,10 +142,10 @@ def add_staff_save(request):
             user.staffs.profile_pic=profile_pic
             user.save()
             messages.success(request, "Staff Added Successfully!")
-            return redirect('add_staff')
+            return redirect('manage_staff')
         except:
             messages.error(request, "Failed to Add Staff!")
-            return redirect('add_staff')
+            return redirect('manage_staff')
     
 
 
@@ -305,11 +305,13 @@ def delete_staff(request, staff_id):
         messages.error(request, "Failed to Delete Staff.")
         return redirect('manage_staff')
 
-
+def staff_detail(request, staff_id):
+    staff = Staffs.objects.get(admin=staff_id)
+    return render(request, 'hod_template/staff_detail.html', {'staff': staff})
 
 
 def add_course(request):
-    return render(request, "hod_template/add_course_template.html")
+    return render(request, "hod_template/add_codurse_template.html")
 
 
 def add_course_save(request):
@@ -330,8 +332,15 @@ def add_course_save(request):
 
 def manage_course(request):
     courses = Courses.objects.all()
+    student_in_course = []
+
+    for course in courses:
+        students = Students.objects.filter(course_id=course.id).count()
+        student_in_course.append(students)
+        
     context = {
-        "courses": courses
+        "courses": courses,
+        "student_in_course": student_in_course,
     }
     return render(request, 'hod_template/manage_course_template.html', context)
 
@@ -488,9 +497,15 @@ def add_student_save(request):
             else:
                 profile_pic_url = None
 
-
             try:
-                user = CustomUser.objects.create_user(username=username, password=password, email=email, first_name=first_name, last_name=last_name, user_type=3)
+                user = CustomUser.objects.create_user(
+                    username=username, 
+                    password=password, 
+                    email=email, 
+                    first_name=first_name, 
+                    last_name=last_name, 
+                    user_type=3
+                )
                 user.students.address = address
 
                 course_obj = Courses.objects.get(id=course_id)
@@ -505,12 +520,12 @@ def add_student_save(request):
                 user.students.profile_pic = profile_pic_url
                 user.save()
                 messages.success(request, "Student Added Successfully!")
-                return redirect('add_student')
+                return redirect('manage_student')
             except:
                 messages.error(request, "Failed to Add Student!")
-                return redirect('add_student')
+                return redirect('manage_student')
         else:
-            return redirect('add_student')
+            return redirect('manage_student')
 
 
 def manage_student(request):
@@ -548,6 +563,7 @@ def edit_student(request, student_id):
 
 def student_detail(request, student_id):
     student = Students.objects.get(admin=student_id)
+
     return render(request, 'hod_template/student_detail.html', {'student': student})
 
 

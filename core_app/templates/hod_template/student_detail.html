@@ -1,28 +1,27 @@
 {% extends 'hod_template/base_template.html' %}
 {% load static %}
 
-<!-- {% block content-header %}
-<div class="card-header">
-  <div class="card-tools">
-    <a href="#" class="btn btn-tool">Print</a>
-    <a href="#" class="btn btn-tool">
-      <i class="fas fa-edit"></i>
-    </a>
-    <a href="#" class="btn btn-tool">
-      <i class="fas fa-times"></i>
-    </a>
-  </div>
-</div>
-{% endblock content-header %}
- -->
+
 {% block main_content %}
-    <div class="row mb-4" style="padding-left: 50px; padding-right: 50px;">
+  <div class="card-header">
+    <div class="card-tools">
+    
+      <a href="#"><strong>Print</strong></a>
+      <a href="{% url 'edit_student' student.admin.id %}" class="btn btn-tool">
+        <i class="fas fa-edit" style="color: blue"></i>
+      </a>
+      <a href="{% url 'delete_student' student.admin.id %}" class="btn btn-tool">
+        <i class="fas fa-trash-alt" style="color: red"></i>
+      </a>
+    </div>
+  </div>
+    <div class="row mb-4" style="padding-left: 50px; padding-right: 50px; padding-top: 50px;">
       <div class="col-sm-4">
         <div class="row mb-2">
 
-          {% if object.passport %}
+          {% if object.profile_pic %}
             <img
-              src=""
+              src="{{ object.profile_pic.url }}"
               class="float-left rounded-circle mr-3" style="width: 120px; height: 120px;">
           {% else %}
             <img
